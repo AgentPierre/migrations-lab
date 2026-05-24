@@ -10,8 +10,10 @@ class User(Base):
     username = Column(String(50), nullable=False, unique=True)
     email = Column(String(120), nullable=False, unique=True)
     full_name = Column(String(100), nullable=True)
+    first_name = Column(String(50), nullable=True)
+    last_name = Column(String(50), nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     is_active = Column(Boolean, default=True, nullable=False, server_default='true')
     bio = Column(Text, nullable=True)
     def __repr__(self):
-        return f"<User(id={self.id}, username='{self.username}')>" 
+        return f"<User(id={self.id}, username='{self.username}')>"  
