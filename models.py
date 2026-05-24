@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, Text
 from sqlalchemy.orm import declarative_base
 from datetime import datetime
 
@@ -11,5 +11,7 @@ class User(Base):
     email = Column(String(120), nullable=False, unique=True)
     full_name = Column(String(100), nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
+    is_active = Column(Boolean, default=True, nullable=False, server_default='true')
+    bio = Column(Text, nullable=True)
     def __repr__(self):
         return f"<User(id={self.id}, username='{self.username}')>" 
