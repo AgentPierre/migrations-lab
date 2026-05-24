@@ -78,3 +78,36 @@ alembic downgrade -1
 Built as part of a structured DevOps curriculum covering CI/CD, IaC, and automated
 pipelines. Follows the same migration patterns used by teams at scale — non-destructive
 changes, reversible deployments, schema history in version control.
+
+## AI-Assisted Development
+
+This project was built using Claude (Anthropic) as a learning partner — not as a
+code generator. The distinction matters.
+
+Every command was explained before it was run. Every migration file was read and
+understood before it was applied. Every error was debugged by reasoning through
+the problem, not by blindly copying a fix.
+
+AI was used to:
+- Explain concepts (why server_default differs from default=, how down_revision
+  builds the migration chain, why migrations run before code in a CI/CD pipeline)
+- Ask checkpoint questions after each phase to verify understanding
+- Provide structured context when debugging real errors
+
+AI was NOT used to:
+- Write code that was copy-pasted without understanding
+- Skip the explain-before-run rule
+- Bypass the debugging process when things broke
+
+Real errors encountered and debugged during this project:
+- Broken migration chain from duplicate version files
+- Literal `*` filename from a failed glob expansion
+- Missing revision variables in a hand-written migration
+- Stray test migration blocking alembic history
+- psycopg2 missing from venv after reinstall
+
+Each of these was diagnosed and fixed by reasoning through the error output —
+not by asking AI to "just fix it."
+
+This reflects how I intend to use AI on a team: as a force multiplier for
+understanding, not a substitute for it.
